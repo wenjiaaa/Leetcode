@@ -1,7 +1,7 @@
 """
-https://leetcode.com/problems/binary-tree-inorder-traversal/
+https://leetcode.com/problems/binary-tree-preorder-traversal/
 
-Given a binary tree, return the inorder traversal of its nodes' values.
+Given a binary tree, return the preorder traversal of its nodes' values.
 
 Example:
 
@@ -12,7 +12,7 @@ Input: [1,null,2,3]
     /
    3
 
-Output: [1,3,2]
+Output: [1,2,3]
 """
 # Definition for a binary tree node.
 
@@ -25,30 +25,33 @@ class TreeNode:
 
 
 class Solution:
-    def inorderTraversal(self, root):
+    def preorderTraversal(self, root: TreeNode):
         res = []
-        self.func(root, res)
+        res = self.func(root, res)
         return res
 
     def func(self, root, arr):
-        if (not root):
+        if not root:
             return
-        self.func(root.left, arr)
         arr.append(root.val)
+        self.func(root.left, arr)
         self.func(root.right, arr)
-
+        return arr
 
 # 非递归写法
+
+
 class Solution1:
-    def inorderTraversal(self, root):
+    def preorderTraversal(self, root: TreeNode):
         res, L = [], []
         while root or L:
             if root:
+                res.append(root.val)
                 L.append(root)
                 root = root.left
+
             else:
                 root = L.pop()
-                res.append(root.val)
                 root = root.right
         return res
 
@@ -58,4 +61,4 @@ cur.right = TreeNode(2)
 cur.right.left = TreeNode(3)
 
 S = Solution1()
-print(S.inorderTraversal(cur))
+print(S.preorderTraversal(cur))
