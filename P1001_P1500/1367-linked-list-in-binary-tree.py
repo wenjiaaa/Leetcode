@@ -38,13 +38,13 @@ class Solution:
         while head:
             res.append(str(head.val))
             head = head.next
+        head = "".join(res)
 
         def dfs(root, path):
             if head in path:
                 return True
             if not root:
                 return False
-
             return dfs(root.left, path+str(root.val)) or dfs(root.right, path+str(root.val))
 
         return dfs(root, "")
