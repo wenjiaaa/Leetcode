@@ -1,0 +1,4 @@
+log
+makelinks.py
+*.pyc
+__pycache__/
