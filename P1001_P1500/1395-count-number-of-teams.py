@@ -26,6 +26,8 @@ Example 3:
 
 Input: rating = [1,2,3,4]
 Output: 4
+
+参考了讨论区解法：https://leetcode.com/problems/count-number-of-teams/discuss/554918/Python-Easy-O(N2)-DP-solution
 """
 
 from collections import defaultdict
