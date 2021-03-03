@@ -37,9 +37,9 @@ class Solution(object):
             mid = (left + right) // 2
             if nums[mid] != nums[mid - 1] and nums[mid] != nums[mid + 1]:
                 return nums[mid]
-            elif (nums[mid] == nums[mid - 1] and (mid - 1) % 2 == 0) or (nums[mid] == nums[mid + 1] and mid % 2 == 0):
+            elif (nums[mid] == nums[mid - 1] and mid % 2 != 0) or (nums[mid] == nums[mid + 1] and mid % 2 == 0):
                 left = mid + 1
-            elif (nums[mid] == nums[mid - 1] and (mid - 1) % 2 != 0) or (nums[mid] == nums[mid + 1] and mid % 2 != 0):
+            else:
                 right = mid - 1
 
 
