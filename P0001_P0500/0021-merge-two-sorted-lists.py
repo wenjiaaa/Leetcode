@@ -20,8 +20,8 @@ class Solution:
                 cur.next = l2
                 l2 = l2.next
             cur = cur.next
-        if not l1:
+        if l2:
             cur.next = l2
-        if not l2:
+        if l1:
             cur.next = l1
         return head.next

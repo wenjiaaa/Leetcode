@@ -1,4 +1,5 @@
 log
 makelinks.py
 *.pyc
+test.py
 __pycache__/

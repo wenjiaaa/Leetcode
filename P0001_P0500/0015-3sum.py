@@ -22,38 +22,36 @@ A solution set is:
 
 # 双指针， O(n^2)， 这个方法适用于任何target，不一定非要和等于0
 class Solution:
-    def threeSum(self, nums):
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        if len(nums) < 3:
+            return res
         nums.sort()
-        res = []
-        for i in range(len(nums) - 2):
-            a = nums[i]
-            if a > 0:
+        for k in range(len(nums)):
+            # 由于数组是升序排列，因此如果第一个数大于0，那和肯定不可能为0了
+            if nums[k] > 0:
                 break
-            if nums[i] == nums[i-1] and i != 0:
+            # 如果连续两个数相等，则需要去重，跳过
+            if nums[k] == nums[k-1] and k != 0:
                 continue
-            tmp = self.twoSum(a, nums[i + 1:], 0)
-            res.extend(tmp)
+            target = -nums[k]
+            i = k+1
+            j = len(nums) - 1
+            while i < j:
+                if nums[i] + nums[j] == target:
+                    if [nums[k], nums[i], nums[j]] not in res:
+                        res.append([nums[k], nums[i], nums[j]])
+                    i += 1
+                    j -= 1
+                elif nums[i] + nums[j] < target:
+                    i += 1
+                else:
+                    j -= 1
         return res
-
-    def twoSum(self, a, nums, target):
-        # 注意可能有多组答案，有可能重复
-        i = 0
-        j = len(nums) - 1
-        res = []
-        while (i < j):
-            if a + nums[i] + nums[j] == target:
-                if [a, nums[i], nums[j]] not in res:
-                    res.append([a, nums[i], nums[j]])
-                i += 1
-                j -= 1
-            elif a + nums[i] + nums[j] < target:
-                i += 1
-            else:
-                j -= 1
-        return res
-
 
 # 参考答案里面的O(n)的解法， 把数组分为正数， 负数， 和必须是0
+
+
 class Solution1:
     def threeSum(self, nums):
         res = set()
