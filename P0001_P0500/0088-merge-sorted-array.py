@@ -21,31 +21,31 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        i, j = 0, 0
-        k_pre = len(nums1)
-        while (i < m and j < n):
-            if (nums1[i] < nums2[j]):
-                nums1.append(nums1[i])
-                i += 1
+
+        i, j = m-1, n-1
+        tail = m+n - 1
+        while i >= 0 or j >= 0:
+            if i == -1:
+                nums1[tail] = nums2[j]
+                j -= 1
+            elif j == -1:
+                nums1[tail] = nums1[i]
+                i -= 1
+            elif nums1[i] > nums2[j]:
+                nums1[tail] = nums1[i]
+                i -= 1
             else:
-                nums1.append(nums2[j])
-                j += 1
-        while i < m:
-            nums1.append(nums1[i])
-            i += 1
-        while j < n:
-            nums1.append(nums2[j])
-            j += 1
-        for _ in range(k_pre):
-            nums1.pop(0)
+                nums1[tail] = nums2[j]
+                j -= 1
+            tail -= 1
 
 
 S = Solution()
 
 
-nums1 = [1, 2, 3]
-m = 3
-nums2 = [2, 5, 6]
-n = 3
+nums1 = [0]
+m = 0
+nums2 = [2]
+n = 1
 S.merge(nums1, m, nums2, n)
-print(nums1, nums2)
+print(nums1)
